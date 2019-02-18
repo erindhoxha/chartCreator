@@ -1,0 +1,161 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/spectrum.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <meta name="theme-color" content="#fafafa">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+  <style>
+      * {
+          font-family:Montserrat;
+      }
+      #input-label, #input-data, #add-data, #remove-data {
+          width:100%;
+          margin-top:10px;
+          text-indent:5px;
+      }
+      #input-color {
+          margin-top:10px;
+      }
+      #input-data {
+          margin-bottom:10px;
+      }
+      #input-container {
+          width:400px !important;
+      }
+      #add-data, #remove-data {
+          color:white !important;
+          font-weight:500;
+      }
+  </style>
+</head>
+
+<body style="background-color:black">
+    <div class="container2 p-4">
+        <h2 class="text-white text-center">Chart Creator, add your label, data & color</h2>
+        <div class="chart-box" style="width:70%; border-top:2px solid white; margin:0 auto;">
+    <canvas id="myChart" style="position: relative; height:25vh; width:100vw;margin-bottom:20px;";></canvas>
+        </div>
+    <div style="margin:0 auto; border:2px solid white; padding:30px;" id="input-container">
+        <div class="alert alert-danger mt-3" id="danger-alert">
+            <strong>Oops!</strong> The name of label or data is missing.
+        </div>
+        <input type="text" id="input-label" placeholder="Name of label" style="height:40px"/>
+        <input type="number" id="input-data" placeholder="Enter data" style="height:40px"/>
+        <input type="text" id="input-color" placeholder="Choose color" style="height:40px; text-align:left;"/>
+        <button id="add-data" style=" color:white; border:none; height:40px; padding:0px 20px">Add data</button>
+        <button id="remove-data" style=" color:white; border:none; height:40px; padding:0px 20px">Remove data</button>
+    </div>
+            
+</div>
+
+    <script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: [],
+            datasets: [{
+                label: '# of Votes',
+                data: [],
+                backgroundColor: [
+
+                ],
+            }]
+        },
+        display:false,
+        options: {
+         scales: {
+            xAxes: [{
+                ticks: {
+                  display: false
+               },
+               gridLines: {
+                  display: false
+               }
+            }],
+            yAxes: [{
+               ticks: {
+                  display: false
+               },
+               gridLines: {
+                  display: false,
+               // drawBorder: false //maybe set this as well
+               }
+            }]
+         },
+        }
+    });
+    function addData(chart, label, data, bgColor) {
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+        dataset.backgroundColor.push(bgColor);
+    });
+    chart.update();
+    }
+
+    function removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
+    }
+    var removeBtn = document.getElementById('remove-data');
+    var btn = document.getElementById('add-data');
+    var inputData = document.getElementById('input-data');
+    var inputLabel = document.getElementById('input-label');
+    var inputColor = document.getElementById('input-color');
+
+
+    </script>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+  <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/spectrum.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+<script>
+    $("#input-color").spectrum({
+        preferredFormat: "hex",
+        showInput: true,
+        showPalette: true,
+        palette: [["red", "rgba(0, 255, 0, .5)", "rgb(0, 0, 255)"]]
+    });
+    $("#input-color").on('move.spectrum', function(e, tinycolor) { 
+        console.log($(".sp-input").val())
+        inputColor.value = $(".sp-input").val();
+        console.log(inputColor.value);
+    });
+</script>
+</body>
+
+</html>

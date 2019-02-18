@@ -20,9 +20,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
   <style>
-      * {
-          font-family:Montserrat;
-      }
+    * {
+        font-family:Montserrat;
+    }
       #input-label, #input-data, #add-data, #remove-data {
           width:100%;
           margin-top:10px;
@@ -46,7 +46,7 @@
 
 <body style="background-color:black">
     <div class="container2 p-4">
-        <h2 class="text-white text-center">Chart Creator, add your label, data & color</h2>
+        <h2 class="text-white text-center">Student Grade Chart</h2>
         <div class="chart-box" style="width:70%; border-top:2px solid white; margin:0 auto;">
     <canvas id="myChart" style="position: relative; height:25vh; width:100vw;margin-bottom:20px;";></canvas>
         </div>
@@ -54,11 +54,11 @@
         <div class="alert alert-danger mt-3" id="danger-alert">
             <strong>Oops!</strong> The name of label or data is missing.
         </div>
-        <input type="text" id="input-label" placeholder="Name of label" style="height:40px"/>
-        <input type="number" id="input-data" placeholder="Enter data" style="height:40px"/>
+        <input type="text" id="input-label" placeholder="Name of student" style="height:40px"/>
+        <input type="number" id="input-data" placeholder="Enter grade %" style="height:40px"/>
         <input type="text" id="input-color" placeholder="Choose color" style="height:40px; text-align:left;"/>
-        <button id="add-data" style=" color:white; border:none; height:40px; padding:0px 20px">Add data</button>
-        <button id="remove-data" style=" color:white; border:none; height:40px; padding:0px 20px">Remove data</button>
+        <button id="add-data" style=" color:white; border:none; height:40px; padding:0px 20px">Add Student Grade</button>
+        <button id="remove-data" style=" color:white; border:none; height:40px; padding:0px 20px">Remove Grade</button>
     </div>
             
 </div>
